@@ -23,7 +23,7 @@ const App = () => {
       name: "Scout",
       animal: "Cat",
       breed: "Tuxedo",
-    })
+    }),
   ]);
 };
 

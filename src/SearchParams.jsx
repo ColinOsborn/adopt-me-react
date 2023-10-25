@@ -12,7 +12,6 @@ const SearchParams = () => {
     breed: "",
   });
   const [animal, setAnimal] = useState("");
-  const [pets, setPets] = useState([]);
   const [breeds] = useBreedList(animal);
 
   const results = useQuery(["search", requestParams], fetchSearch);
@@ -23,7 +22,13 @@ const SearchParams = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          requestPets();
+          const formData = new FormData(e.target);
+          const object = {
+            animal: formData.get("animal") ?? "",
+            breed: formData.get("breed") ?? "",
+            location: formData.get("location") ?? "",
+          };
+          setRequestParams(object);
         }}
       >
         <label htmlFor="location">
@@ -38,11 +43,9 @@ const SearchParams = () => {
             value={animal}
             onChange={(e) => {
               setAnimal(e.target.value);
-              setBreed("");
             }}
             onBlur={(e) => {
               setAnimal(e.target.value);
-              setBreed("");
             }}
           >
             <option />

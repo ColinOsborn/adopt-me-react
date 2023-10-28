@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { createPotal } from "react-dom";
+import { createPortal } from "react-dom";
 
 const Modal = ({ children }) => {
   const elRef = useRef(null);
@@ -14,7 +14,7 @@ const Modal = ({ children }) => {
     return () => modalRoot.removeChild(elRef.current);
   }, []);
 
-  return createPotal(<div>{children}</div>, elRef.current);
+  return createPortal(<div>{children}</div>, elRef.current);
 };
 
 export default Modal;
